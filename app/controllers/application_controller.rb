@@ -15,10 +15,20 @@ class ApplicationController < Sinatra::Base
 
   get '/signup' do
     if Helpers.is_logged_in?(session)
-      @user = Helpers.current_user(session)
+      @stylist = Helpers.current_user(session)
       redirect :'clients'
     else
       erb :'stylists/create_stylist'
+    end
+  end
+
+  post '/signup' do
+    if params[:name].empty? || params[:email].empty? || params[:password].empty?
+      redirect '/signup'
+    else
+      @stylist = Stylist.create(params)
+      session[:stylist_id] = @stylist.id
+      redirect :'clients'
     end
   end
 
