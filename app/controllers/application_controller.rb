@@ -9,6 +9,10 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_secret"
   end
 
+  get '/' do
+    erb :index
+  end
+
   get '/signup' do
     if Helpers.is_logged_in?(session)
       @user = Helpers.current_user(session)
