@@ -10,6 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_04_20_154816) do
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.integer "stylist_id"
+  end
+
+  create_table "stylists", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+  end
 
 end
