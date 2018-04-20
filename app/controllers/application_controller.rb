@@ -12,9 +12,9 @@ class ApplicationController < Sinatra::Base
   get '/signup' do
     if Helpers.is_logged_in?(session)
       @user = Helpers.current_user(session)
-      redirect :'tweets'
+      redirect :'clients'
     else
-      erb :'users/create_stylist'
+      erb :'stylists/create_stylist'
     end
   end
 
