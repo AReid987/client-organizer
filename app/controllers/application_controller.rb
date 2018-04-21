@@ -41,6 +41,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/logout' do
+    session.clear
+    redirect '/'
+  end
+
   get '/clients' do
     if Helpers.is_logged_in?(session)
       @stylist = Helpers.current_user(session)
