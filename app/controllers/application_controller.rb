@@ -41,6 +41,15 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/clients' do
+    if params[:name].empty?
+      redirect :'clients/new'
+    else
+      @client = Client.create(name: params[:name], stylist_id: session[:stylist_id])
+      redirect :'clients'
+    end
+  end
+
   get '/clients/new' do
     if Helpers.is_logged_in?(session)
       @stylist = Helpers.current_user(session)
