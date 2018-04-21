@@ -35,8 +35,16 @@ class ApplicationController < Sinatra::Base
   get '/clients' do
     if Helpers.is_logged_in?(session)
       @stylist = Helpers.current_user(session)
+      erb :'/clients/clients'
+    else
+      redirect '/login'
     end
-    erb :'/clients/clients'
   end
 
+  get '/clients/new' do
+    if Helpers.is_logged_in?(session)
+      @stylist = Helpers.current_user(session)
+      erb :'/clients/create_client'
+    end
+  end
 end
