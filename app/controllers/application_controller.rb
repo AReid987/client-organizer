@@ -41,6 +41,18 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/login' do
+    @stylist = Stylist.find_by(name: params[:name])
+    if !@stylist.nil?
+
+      session[:stylist_id] = @stylist.id
+
+      redirect :'clients'
+    else
+      erb :'stylists/create_stylist'
+    end
+  end
+
   get '/logout' do
     session.clear
     redirect '/'
