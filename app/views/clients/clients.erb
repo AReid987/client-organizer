@@ -1,1 +1,9 @@
 <h1>Hello <%= @stylist.name %></h1>
+
+<h4>Clients:</h4>
+<%= @stylist.clients.size %>
+<% @stylist.clients.each do |client| %>
+  <%= client.name %>
+<% end %>
+<br></br>
+<a href="/clients/new">Add New Client</a>
