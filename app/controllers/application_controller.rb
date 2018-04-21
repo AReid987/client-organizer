@@ -32,4 +32,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/clients' do
+    if Helpers.is_logged_in?(session)
+      @stylist = Helpers.current_user(session)
+    end
+    erb :'/clients/clients'
+  end
+
 end
