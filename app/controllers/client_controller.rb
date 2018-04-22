@@ -11,11 +11,15 @@ class ClientController < ApplicationController
 
   post '/clients' do
     if params[:name].empty?
-      redirect :'clients/new'
+      redirect '/new_client_error'
     else
       @client = Client.create(name: params[:name], stylist_id: session[:stylist_id])
       redirect :'clients'
     end
+  end
+
+  get '/new_client_error' do
+    erb :'/clients/new_client_error'
   end
 
   get '/clients/new' do
