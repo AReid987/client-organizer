@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
     if params[:name].empty? || params[:email].empty? || params[:password].empty?
       redirect '/form_error'
     elsif !Stylist.find_by(name: params[:name], email: params[:email]).nil?
-      redirect '/login'
+      redirect '/name_error'
     else
       @stylist = Stylist.create(params)
       session[:stylist_id] = @stylist.id
@@ -66,6 +66,10 @@ class ApplicationController < Sinatra::Base
 
   get '/form_error' do
     erb :'stylists/form_error'
+  end
+
+  get '/name_error' do
+    erb :'stylists/name_error'
   end
 
   get '/clients' do
