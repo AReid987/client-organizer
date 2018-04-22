@@ -1,12 +1,14 @@
 require './config/environment'
-
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
+
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "password_secret"
+    use Rack::Flash
   end
 
   get '/' do
@@ -30,6 +32,7 @@ class ApplicationController < Sinatra::Base
     else
       @stylist = Stylist.create(params)
       session[:stylist_id] = @stylist.id
+      flash[:message] = "Successfully signed up!"
       redirect :'clients'
     end
   end

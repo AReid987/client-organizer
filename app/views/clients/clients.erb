@@ -1,3 +1,6 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 <h1>Hello <%= @stylist.name %></h1>
 
 <h3><%= @stylist.clients.size %> Clients:</h3>
