@@ -96,4 +96,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/clients/:id/edit' do
+    if Helpers.is_logged_in?(session)
+      @stylist = Helpers.current_user(session)
+      @client = Client.find(params[:id])
+      erb :'clients/edit_client'
+    else
+      redirect :'stylists/login'
+    end
+
 end
