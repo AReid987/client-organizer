@@ -25,6 +25,8 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
     if params[:name].empty? || params[:email].empty? || params[:password].empty?
       redirect '/signup'
+    elsif !Stylist.find_by(name: params[:name], email: params[:email]).nil?
+      redirect '/login'
     else
       @stylist = Stylist.create(params)
       session[:stylist_id] = @stylist.id
@@ -42,11 +44,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    @stylist = Stylist.find_by(name: params[:name])
+    if params[:name].empty? || params[:password].empty?
+      redirect '/login'
+    end
+    @stylist = Stylist.find_by(name: params[:name], password: params[:password])
     if !@stylist.nil?
-
       session[:stylist_id] = @stylist.id
-
       redirect :'clients'
     else
       erb :'stylists/create_stylist'
