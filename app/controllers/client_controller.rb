@@ -53,9 +53,11 @@ class ClientController < ApplicationController
       @client = Client.find(params[:id])
       if params[:name].empty?
         erb :"/clients/edit_client_error"
-      else
+      elsif @client.stylist == Helpers.current_user(session)
         @client.update(name: params[:name])
         redirect :'clients'
+      else
+        erb :"/clients/edit_client_error"
       end
     end
 
