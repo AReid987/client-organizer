@@ -1,3 +1,11 @@
 <h1>Hello, <%= @stylist.name %></h1>
 <h4><%= @client.name %> is your client</h4>
 <a href="/clients/<%= @client.id %>/edit">edit client</a>
+<form action="/clients/<%= @client.id %>/edit" method="GET">
+
+  <input id="Edit Client" type="submit" value="Edit Client">
+</form>
+<form action="/clients/<%= @client.id %>/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input id="Delete Client" type="submit" value="Delete Client">
+</form>
