@@ -1,0 +1,6 @@
+<%= @client.name %>
+<form action="/clients/<%= @client.id %>" method="POST">
+  <label>Edit the client name:</label>
+  <input type="text" name="name">
+  <input id="submit" type="submit" value="edit client">
+</form>
