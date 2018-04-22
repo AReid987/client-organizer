@@ -116,4 +116,11 @@ class ApplicationController < Sinatra::Base
       end
     end
 
+    delete '/clients/:id/delete' do
+    @client = Client.find(params[:id])
+    if @client.stylist == Helpers.current_user(session)
+      @client.destroy
+    end
+  end
+
 end
