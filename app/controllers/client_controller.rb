@@ -52,7 +52,7 @@ class ClientController < ApplicationController
     post '/clients/:id' do
       @client = Client.find(params[:id])
       if params[:name].empty?
-        redirect :"clients/#{@client.id}/edit"
+        erb :"/clients/edit_client_error"
       else
         @client.update(name: params[:name])
         redirect :'clients'
