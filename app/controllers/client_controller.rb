@@ -59,6 +59,7 @@ class ClientController < ApplicationController
     @client = Client.find(params[:id])
     if @client.stylist == Helpers.current_user(session)
       @client.destroy
+      redirect :'clients'
     end
   end
 
