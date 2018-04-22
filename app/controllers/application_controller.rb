@@ -104,14 +104,16 @@ class ApplicationController < Sinatra::Base
     else
       redirect :'stylists/login'
     end
+  end
 
     post '/clients/:id' do
-    @client = Client.find(params[:id])
-    if params[:name].empty?
-      redirect :"clients/#{@client.id}/edit"
-    else
-      @client.update(name: params[:name])
+      @client = Client.find(params[:id])
+      if params[:name].empty?
+        redirect :"clients/#{@client.id}/edit"
+      else
+        @client.update(name: params[:name])
+        redirect :'clients'
+      end
     end
-  end
 
 end

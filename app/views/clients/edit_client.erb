@@ -1,4 +1,5 @@
-<%= @client.name %>
+<h1>Hello, <%= @stylist.name %>. You can edit <%= @client.name %></h1>
+
 <form action="/clients/<%= @client.id %>" method="POST">
   <label>Edit the client name:</label>
   <input type="text" name="name">
