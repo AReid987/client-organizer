@@ -44,7 +44,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    #binding.pry 
     if params[:name].empty? || params[:password].empty?
       redirect '/login'
     end
@@ -91,7 +90,6 @@ class ApplicationController < Sinatra::Base
     if Helpers.is_logged_in?(session)
       @stylist = Helpers.current_user(session)
       @client = Client.find(params[:id])
-      #binding.pry
       erb :'clients/show_client'
     else
       redirect :'/login'
