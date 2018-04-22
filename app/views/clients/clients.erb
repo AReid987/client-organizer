@@ -3,7 +3,7 @@
 <h3><%= @stylist.clients.size %> Clients:</h3>
 
 <% @stylist.clients.each do |client| %>
-  <%= client.name %>
+  <a href="/clients/<%= client.id %>"><%= client.name %></a>
   <br></br>
 <% end %>
 <a href="/clients/new">Add New Client</a>
